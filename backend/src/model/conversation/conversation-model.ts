@@ -1,8 +1,8 @@
 import mongoose, { Schema } from 'mongoose';
 
-import { IConversationModel } from './conversation-type';
 import { UserModel } from 'model/user/user-model';
 import FKHelper from '../foreign-key-helper';
+import { IConversationModel } from './conversation-type';
 
 const ConversationSchema = new Schema<IConversationModel>(
   {

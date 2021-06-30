@@ -1,7 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-import { IMessageModel } from './message-type';
-import { ConversationModel, UserModel } from 'model';
+import { ConversationModel, IMessageModel, UserModel } from 'model';
 import FKHelper from '../foreign-key-helper';
 
 const MessageSchema = new Schema<IMessageModel>(

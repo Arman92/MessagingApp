@@ -92,8 +92,8 @@ export class User {
     username: string;
     password: string;
   }): Promise<IUserModel | null> {
-    userInfo.password = await hashPassword(userInfo.password);
-    return UserModel.create(userInfo);
+    const hashedPassword = await hashPassword(userInfo.password);
+    return UserModel.create({ ...userInfo, password: hashedPassword });
   }
 
   /**

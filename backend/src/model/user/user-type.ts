@@ -1,3 +1,6 @@
+import { Document } from 'mongoose';
+import { ISharedModel } from '@messaging/model/shared-model';
+
 export interface IUser extends Document {
   name: string;
   email: string;
