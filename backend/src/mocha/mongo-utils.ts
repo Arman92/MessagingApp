@@ -25,9 +25,15 @@ export const dropMockDatabase = async () => {
   await mongoose.connection.dropDatabase();
 };
 
-export const createMockUser = async () => {
+export const createMockDatabaseUser = async () => {
   const user: IUserModel = await factory.build('user');
   const password = user.password;
 
   return { user: await user.save(), password };
+};
+
+export const createMockUser = async () => {
+  const user: IUserModel = await factory.build('user');
+
+  return user;
 };

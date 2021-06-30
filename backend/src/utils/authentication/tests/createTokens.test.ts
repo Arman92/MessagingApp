@@ -8,7 +8,7 @@ describe('Create Tokens', () => {
     const result = await createAuthTokens(
       {
         userId: '121231ade2',
-        email_cellphone: 'test@test.com',
+        email: 'test@test.com',
       },
       'access token secret',
       'refresh token secret'

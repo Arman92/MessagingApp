@@ -7,7 +7,7 @@ import { AuthenticationError } from '@messaging/api/api-errors';
 const { authTokenExpiresIn, authRefreshTokenExpiresIn } = config.auth.jwt;
 
 export const createAuthTokens = async (
-  identity: { userId: string; email_cellphone: string },
+  identity: { userId: string; email: string },
   secret: string,
   refreshSecret: string
 ) => {

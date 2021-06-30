@@ -7,6 +7,7 @@ import { customLogStream } from '@messaging/log';
 import { errorHandlerMiddleware } from '@messaging/middleware/error-handler';
 
 import { authRouter } from '@messaging/api';
+import authChecker from '@messaging/middleware/auth-checker';
 
 const server = express();
 
@@ -61,6 +62,9 @@ if (config.log.morgan.enabled) {
     );
   });
 }
+
+// Enable Auth Middleware
+server.use(authChecker);
 
 server.use('/auth', authRouter);
 
