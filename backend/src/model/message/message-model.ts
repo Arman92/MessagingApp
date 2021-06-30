@@ -1,6 +1,8 @@
 import mongoose, { Schema } from 'mongoose';
 
 import { IMessageModel } from './message-type';
+import FKHelper from '../foreign-key-helper';
+import { ConversationModel } from 'model/conversation/conversation-model';
 
 const MessageSchema = new Schema<IMessageModel>(
   {
@@ -9,6 +11,15 @@ const MessageSchema = new Schema<IMessageModel>(
       ref: 'Conversation',
       autopopulate: true,
       required: true,
+
+      validate: [
+        {
+          validator(v: any) {
+            return FKHelper(ConversationModel, v);
+          },
+          msg: 'Participant (user) does not exist!',
+        },
+      ],
     },
     from: {
       type: Schema.Types.ObjectId,
