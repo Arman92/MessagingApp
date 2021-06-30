@@ -11,9 +11,9 @@
     "build": "rm -rf ./build && tsc",
     "start": "ts-node-dev --respawn --debounce 100 --transpile-only -r tsconfig-paths/register   ./src/index.ts",
     "dev": "ts-node-dev --respawn --debounce 100 --transpile-only -r tsconfig-paths/register   ./src/index.ts",
-    "dev:debug": "ts-node-dev --respawn --inspect=0.0.0.0:9229 --debounce 100 --transpile-only -r tsconfig-paths/register  ./src/index.ts ",
+    "dev:debug": "ts-node-dev --respawn --inspect=0.0.0.0:9896 --debounce 100 --transpile-only -r tsconfig-paths/register  ./src/index.ts ",
     "prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./build/index.js",
-    "test": "mocha -- -c --timeout 30000 --exit --require ts-node/register --require tsconfig-paths/register --bail src/mocha/mochaHooks.ts src/**/*.test.ts",
+    "test": "TS_NODE_FILES=true mocha -- -c --timeout 30000 --exit -r ts-node/register -r tsconfig-paths/register --bail src/mocha/mochaHooks.ts src/**/*.test.ts",
     "coverage": "jest --coverage",
     "lint": "eslint '*/**/*.{js,ts}' --quiet --fix"
   },
@@ -35,6 +35,7 @@
     "mongoose": "^5.13.0",
     "mongoose-autopopulate": "^0.14.0",
     "morgan": "^1.10.0",
+    "ts-node": "^10.0.0",
     "typescript": "^4.3.4",
     "winston": "^3.3.3",
     "winston-daily-rotate-file": "^4.5.5"

@@ -91,9 +91,6 @@ export class User {
     username: string;
     password: string;
   }): Promise<IUserModel | null> {
-    console.log({
-      userInfo,
-    });
     return UserModel.create(userInfo);
   }
 
