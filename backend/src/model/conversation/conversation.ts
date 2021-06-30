@@ -19,35 +19,51 @@ export class Conversation {
   /**
    * Fetches All Conversations of user
    *
+   * @param userId - id of target user
    * @returns List of all conversations on database
    */
-  public static async getAllConversationsOfUser(): Promise<
-    IConversationModel[]
-  > {
-    return ConversationModel.find().exec();
+  public static async getAllConversationsOfUser(
+    userId: string
+  ): Promise<IConversationModel[]> {
+    return ConversationModel.find({
+      participants: { $in: [Types.ObjectId(userId)] },
+    }).exec();
   }
 
   /**
    * Returns all conversations of user count
    *
+   * @param userId - id of target user
    * @returns Count of all conversations
    */
-  public static async getAllConversationsOfUserCount(): Promise<number> {
-    return ConversationModel.countDocuments().exec();
+  public static async getAllConversationsOfUserCount(
+    userId: string
+  ): Promise<number> {
+    return ConversationModel.countDocuments({
+      participants: { $in: [Types.ObjectId(userId)] },
+    }).exec();
   }
 
   /**
    * Fetches Conversations with pagination
    *
-   * @returns List of all conversations on database
+   * @param userId - id of target user
+   * @param start - start index
+   * @param count - (max) count of records to return
+   * @param sort - sort by column
+   * @param sortType - sort order, 1 for asc, 0 for desc
+   * @returns List of conversations of this user with pagination
    */
   public static async getConversationsOfUser(
+    userId: string,
     start: number,
     count: number,
     sort: string,
     sortType: number
   ): Promise<IConversationModel[]> {
-    return ConversationModel.find()
+    return ConversationModel.find({
+      participants: { $in: [Types.ObjectId(userId)] },
+    })
       .skip(start)
       .limit(count)
       .sort({ [sort]: sortType })
