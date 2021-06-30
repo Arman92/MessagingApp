@@ -101,17 +101,15 @@ export class User {
    *
    * @param id - The User's id to update
    * @param name - New Name
-   * @param username - New Username
    * @returns The modified User or null if user does not exist
    */
   public static async updateUser(
     id: string | Types.ObjectId,
-    name: string,
-    username: string
+    name: string
   ): Promise<IUserModel | null> {
     return UserModel.findByIdAndUpdate(
       id,
-      { $set: { name, username } },
+      { $set: { name } },
       { new: true, useFindAndModify: false }
     ).exec();
   }
