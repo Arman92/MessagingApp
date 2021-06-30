@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 
 import config from '@messaging/config';
 import log from '@messaging/log';
-import server from './server';
+import server from './api-server';
 
 // Options for MongoDB Database
 const mongodbOptions = {
