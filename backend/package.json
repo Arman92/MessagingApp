@@ -1,0 +1,9 @@
+{
+  "name": "messaging-backend",
+  "version": "0.0.1",
+  "description": "MERN Stack messaging backend",
+  "main": "index.js",
+  "repository": "https://github.com/Arman92/MessagingApp",
+  "author": "Arman Safikhani",
+  "license": "MIT"
+}
