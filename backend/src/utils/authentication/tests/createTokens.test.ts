@@ -1,3 +1,6 @@
+import 'mocha';
+import { expect } from 'chai';
+
 import { createAuthTokens } from '../createTokens';
 
 describe('Create Tokens', () => {
@@ -8,13 +11,11 @@ describe('Create Tokens', () => {
         email_cellphone: 'test@test.com',
       },
       'access token secret',
-      'refresh token secret',
-
-      (key: string) => key
+      'refresh token secret'
     );
 
-    expect(result).toHaveLength(3);
-    expect(result[0]).not.toEqual('');
-    expect(result[1]).not.toEqual('');
+    expect(result).to.have.length(3);
+    expect(result[0]).to.not.eq('');
+    expect(result[1]).to.not.eq('');
   });
 });

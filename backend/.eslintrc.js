@@ -1,8 +1,10 @@
 module.exports = {
   root: true,
-  // env: {
-  //   node: true,
-  // },
+  env: {
+    es6: true,
+    node: true,
+    mocha: true,
+  },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -17,5 +19,8 @@ module.exports = {
   rules: {
     // disable the rule for all files
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+  },
+  standard: {
+    env: ['mocha'],
   },
 };
