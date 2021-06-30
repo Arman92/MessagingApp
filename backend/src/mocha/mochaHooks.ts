@@ -1,4 +1,5 @@
 import 'mocha';
+import './factory';
 
 before(async () => {});
 

@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
+import factory from 'factory-girl';
+import { IUserModel } from 'model';
 
 let mongoServer: MongoMemoryServer;
 
@@ -10,6 +12,7 @@ export const createMockDatabase = async () => {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+    keepAlive: true,
   });
 };
 
@@ -20,4 +23,11 @@ export const clearMockDatabase = async () => {
 
 export const dropMockDatabase = async () => {
   await mongoose.connection.dropDatabase();
+};
+
+export const createMockUser = async () => {
+  const user: IUserModel = await factory.build('user');
+  const password = user.password;
+
+  return { user: await user.save(), password };
 };
