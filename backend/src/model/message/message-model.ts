@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+import autoPopulate from 'mongoose-autopopulate';
 
 import { ConversationModel, IMessageModel, UserModel } from 'model';
 import FKHelper from '../foreign-key-helper';
@@ -49,6 +50,8 @@ MessageSchema.pre('findOneAndUpdate', function () {
 
 // TODO: put any cascading delete or relevant logic here, if needed
 // MessageSchema.pre('remove', function (next) {});
+
+MessageSchema.plugin(autoPopulate);
 
 export const MessageModel = mongoose.model<IMessageModel>(
   'Message',

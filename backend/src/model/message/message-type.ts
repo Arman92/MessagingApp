@@ -1,11 +1,13 @@
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
-import { IUser } from '@messaging/model';
+import { IConversation } from '@messaging/model';
 import { ISharedModel } from '@messaging/model/shared-model';
+import { IUser } from 'model/user';
 
 export interface IMessage extends Document {
-  title?: string;
-  participants: IUser[];
+  conversation: Types.ObjectId | IConversation;
+  from: Types.ObjectId | IUser;
+  content: string;
 }
 
 export interface IMessageModel extends IMessage, ISharedModel {}

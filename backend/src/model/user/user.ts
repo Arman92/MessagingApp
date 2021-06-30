@@ -61,7 +61,11 @@ export class User {
   /**
    * Fetches Users with pagination
    *
-   * @returns List of all users on database
+   * @param start - start index
+   * @param count - (max) count of records to return
+   * @param sort - sort by column
+   * @param sortType - sort order, 1 for asc, 0 for desc
+   * @returns List of users on database with pagination
    */
   public static async getUsers(
     start: number,
