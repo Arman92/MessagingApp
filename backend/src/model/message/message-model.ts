@@ -1,8 +1,8 @@
 import mongoose, { Schema } from 'mongoose';
 
 import { IMessageModel } from './message-type';
+import { ConversationModel, UserModel } from 'model';
 import FKHelper from '../foreign-key-helper';
-import { ConversationModel } from 'model/conversation/conversation-model';
 
 const MessageSchema = new Schema<IMessageModel>(
   {
@@ -17,7 +17,7 @@ const MessageSchema = new Schema<IMessageModel>(
           validator(v: any) {
             return FKHelper(ConversationModel, v);
           },
-          msg: 'Participant (user) does not exist!',
+          msg: 'Conversation does not exist!',
         },
       ],
     },
@@ -26,6 +26,15 @@ const MessageSchema = new Schema<IMessageModel>(
       ref: 'User',
       autopopulate: false,
       required: true,
+
+      validate: [
+        {
+          validator(v: any) {
+            return FKHelper(UserModel, v);
+          },
+          msg: 'User does not exist!',
+        },
+      ],
     },
     content: {
       type: String,
