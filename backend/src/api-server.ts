@@ -6,6 +6,8 @@ import config from '@messaging/config';
 import { customLogStream } from '@messaging/log';
 import { errorHandlerMiddleware } from '@messaging/middleware/error-handler';
 
+import { authRouter } from '@messaging/api';
+
 const server = express();
 
 // In case we are behind something like NGinx and we want to trust the https connections coming from it.
@@ -59,6 +61,8 @@ if (config.log.morgan.enabled) {
     );
   });
 }
+
+server.use('/auth', authRouter);
 
 server.use(errorHandlerMiddleware);
 

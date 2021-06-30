@@ -18,14 +18,15 @@ authRouter.post(
       let user = await User.getUserByEmail(emailOrUsername.toLowerCase());
       if (!user) {
         user = await User.getUserByUsername(emailOrUsername.toLowerCase());
+
         if (!user) {
-          next(new NotFoundError('User not found'));
+          return next(new NotFoundError('User not found'));
         }
       }
 
       const isEqual = await comparePassword(password, user.password);
       if (!isEqual) {
-        next(new UserInputError('Incorrect username or password'));
+        return next(new UserInputError('Incorrect username or password'));
       }
 
       const [accessToken, refreshToken, accessTokenExpireDate] =
@@ -46,3 +47,5 @@ authRouter.post(
     }
   }
 );
+
+export { authRouter };
