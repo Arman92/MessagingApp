@@ -2,7 +2,6 @@ import { Types } from 'mongoose';
 
 import { UserModel } from './user-model';
 import { IUserModel } from './user-type';
-import { hashPassword } from '@messaging/utils';
 
 export class User {
   /**
@@ -92,8 +91,10 @@ export class User {
     username: string;
     password: string;
   }): Promise<IUserModel | null> {
-    const hashedPassword = await hashPassword(userInfo.password);
-    return UserModel.create({ ...userInfo, password: hashedPassword });
+    console.log({
+      userInfo,
+    });
+    return UserModel.create(userInfo);
   }
 
   /**

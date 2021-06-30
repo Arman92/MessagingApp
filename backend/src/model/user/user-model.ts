@@ -1,6 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 
 import { IUserModel } from './user-type';
+import { hashPassword } from '@messaging/utils';
 
 const UserSchema = new Schema<IUserModel>(
   {
@@ -33,6 +34,18 @@ const UserSchema = new Schema<IUserModel>(
 
 UserSchema.pre('findOneAndUpdate', function () {
   this.setUpdate({ ...this.getUpdate, updatedAt: new Date() });
+});
+
+UserSchema.pre('save', function (next) {
+  const user = this;
+
+  // only hash the password if it has been modified (or is new)
+  if (!user.isModified('password')) return next();
+
+  hashPassword(user.password).then((hashed) => {
+    user.password = hashed;
+    next();
+  });
 });
 
 // TODO: put any cascading delete or relevant logic here, if needed
