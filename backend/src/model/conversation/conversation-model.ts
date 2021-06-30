@@ -25,7 +25,7 @@ ConversationSchema.pre('findOneAndUpdate', function () {
 // TODO: put any cascading delete or relevant logic here, if needed
 // ConversationSchema.pre('remove', function (next) {});
 
-export const UserModel = mongoose.model<IConversationModel>(
+export const ConversationModel = mongoose.model<IConversationModel>(
   'Conversation',
   ConversationSchema
 );
