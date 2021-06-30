@@ -1,4 +1,4 @@
-import config from '@iam/config';
+import config from '@messaging/config';
 import appRootPath from 'app-root-path';
 import winston from 'winston';
 
