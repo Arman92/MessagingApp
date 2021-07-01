@@ -2,7 +2,7 @@
 MERN Stack messaging app
 
 ## Introduction
-MessagingApp is a real-time messaging service written with Node.js, Mongodb, Express.js, Socket.IO and TypeScript and unit tested with Mocha and Chai.
+MessagingApp is a real-time messaging service built with Node.js, Mongodb, Express.js, Socket.IO, TypeScript and unit tested with Mocha and Chai.
 
 
 ## Key features:
@@ -40,3 +40,9 @@ MONGO_PORT=27017
 
 ```
 
+After setting `.env`, you are ready to run the backend services:
+```bash
+docker-compose up -d                                      # For production
+# or
+docker-compose -f ./docker-compose.dev.yml up -d          # For develpment and debugging
+```
