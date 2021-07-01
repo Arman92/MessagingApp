@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  server:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: messaging-server
+    container_name: messaging-node-server
+    ports:
+      - '${APP_PORT}:${APP_PORT}'
+    env_file: .env
+    environment:
+      - NODE_ENV=production
+    networks:
+      - app-network
+
+  database:
+    image: mongo:latest
+    container_name: messaging-mongo-dev
+    hostname: mongodbserver
+    env_file: .env
+    environment:
+      - MONGO_INITDB_DATABASE=${MONGO_DB_NAME}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
+    volumes:
+      - ./docker-volumes/mongo:/data/db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    name: messaging-network

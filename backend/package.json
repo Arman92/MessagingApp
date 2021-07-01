@@ -13,7 +13,7 @@
     "dev": "ts-node-dev --respawn --debounce 100 --transpile-only -r tsconfig-paths/register   ./src/index.ts",
     "dev:debug": "ts-node-dev --respawn --inspect=0.0.0.0:9896 --debounce 100 --transpile-only -r tsconfig-paths/register  ./src/index.ts ",
     "prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./build/index.js",
-    "test": "TS_NODE_FILES=true mocha -- -c --timeout 30000 --exit -r ts-node/register -r tsconfig-paths/register --bail src/mocha/mochaHooks.ts src/**/*.test.ts",
+    "test": "TS_NODE_FILES=true mocha -- -c --timeout 30000 --exit -r ts-node/register -r tsconfig-paths/register --bail src/mocha/setup-tests.ts src/**/*.test.ts",
     "coverage": "jest --coverage",
     "lint": "eslint '*/**/*.{js,ts}' --quiet --fix"
   },

@@ -19,7 +19,7 @@ const mongodbOptions = {
   bufferMaxEntries: 0,
 };
 
-const dbURI = `mongodb+srv://${config.db.user}:${config.db.password}@${config.db.host}/${config.db.database}?retryWrites=true&w=majority`;
+const dbURI = `mongodb://${config.db.user}:${config.db.password}@${config.db.host}/${config.db.database}?authSource=admin`;
 
 log.info(`Connecting to Mongodb via this URI: ${dbURI}`);
 
@@ -28,7 +28,6 @@ mongoose
   .connect(dbURI, mongodbOptions)
   .then(async () => {
     httpServer.listen(config.app.port, () => {
-      // tslint:disable-next-line: max-line-length
       log.info(`Server ready at http://${config.app.host}:${config.app.port}`);
     });
   })
