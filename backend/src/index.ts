@@ -19,7 +19,7 @@ const mongodbOptions = {
   bufferMaxEntries: 0,
 };
 
-let dbURI = `mongodb+srv://${config.db.user}:${config.db.password}@${config.db.host}/${config.db.database}?retryWrites=true&w=majority`;
+const dbURI = `mongodb+srv://${config.db.user}:${config.db.password}@${config.db.host}/${config.db.database}?retryWrites=true&w=majority`;
 
 log.info(`Connecting to Mongodb via this URI: ${dbURI}`);
 

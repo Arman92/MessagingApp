@@ -37,13 +37,11 @@ UserSchema.pre('findOneAndUpdate', function () {
 });
 
 UserSchema.pre('save', function (next) {
-  const user = this;
-
   // only hash the password if it has been modified (or is new)
-  if (!user.isModified('password')) return next();
+  if (!this.isModified('password')) return next();
 
-  hashPassword(user.password).then((hashed) => {
-    user.password = hashed;
+  hashPassword(this.password).then((hashed) => {
+    this.password = hashed;
     next();
   });
 });

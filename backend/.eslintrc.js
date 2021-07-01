@@ -20,7 +20,4 @@ module.exports = {
     // disable the rule for all files
     '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
-  standard: {
-    env: ['mocha'],
-  },
 };
