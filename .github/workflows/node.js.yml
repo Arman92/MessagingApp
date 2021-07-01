@@ -26,7 +26,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
-    - run: cd backend
     - run: yarn install
+      working-directory: backend
     - run: yarn run build
+      working-directory: backend
     - run: yarn test
+      working-directory: backend
