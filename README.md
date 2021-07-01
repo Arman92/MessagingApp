@@ -1,3 +1,6 @@
+[![Node.js CI](https://github.com/Arman92/MessagingApp/actions/workflows/node.js.yml/badge.svg)](https://github.com/Arman92/MessagingApp/actions/workflows/node.js.yml)
+
+
 # MessagingApp
 MERN Stack messaging app
 
