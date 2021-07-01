@@ -17,7 +17,7 @@ services:
 
   database:
     image: mongo:latest
-    container_name: messaging-mongo-dev
+    container_name: messaging-mongo
     hostname: mongodbserver
     env_file: .env
     environment:

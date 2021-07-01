@@ -1,11 +1,11 @@
 version: '3.7'
 
 services:
-  server:
+  server-dev:
     build:
       context: ./
       dockerfile: Dockerfile.dev
-    image: messaging-server
+    image: messaging-server-dev
     container_name: messaging-node-server
     ports:
       - '${APP_PORT}:${APP_PORT}'
@@ -21,7 +21,7 @@ services:
     networks:
       - app-network
 
-  database:
+  database-dev:
     image: mongo:latest
     container_name: messaging-mongo-dev
     hostname: mongodbserver
