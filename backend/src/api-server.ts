@@ -1,6 +1,8 @@
 import morgan from 'morgan';
 import express from 'express';
 import cors from 'cors';
+import { Server as SocketIOServer } from 'socket.io';
+import http from 'http';
 
 import config from '@messaging/config';
 import { customLogStream } from '@messaging/log';
@@ -9,6 +11,7 @@ import { errorHandlerMiddleware } from '@messaging/middleware/error-handler';
 import { authRouter, conversationRouter } from '@messaging/api';
 import authChecker from '@messaging/middleware/auth-checker';
 import { contextMiddleware } from '@messaging/middleware/context';
+import { setupSocketIo } from '@messaging/api/socket';
 
 const server = express();
 
@@ -74,4 +77,15 @@ server.use('/conversation', conversationRouter);
 
 server.use(errorHandlerMiddleware);
 
+const httpServer = http.createServer(server);
+const socketServer = new SocketIOServer(httpServer, {
+  cors: {
+    origin: true,
+    methods: ['GET', 'POST'],
+    credentials: true,
+  },
+});
+setupSocketIo(socketServer);
+
+export { httpServer };
 export default server;

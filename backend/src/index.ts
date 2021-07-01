@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 
 import config from '@messaging/config';
 import log from '@messaging/log';
-import server from './api-server';
+import { httpServer } from './api-server';
 
 // Options for MongoDB Database
 const mongodbOptions = {
@@ -19,7 +19,7 @@ const mongodbOptions = {
   bufferMaxEntries: 0,
 };
 
-const dbURI = `mongodb://${config.db.user}:${config.db.password}@${config.db.host}:${config.db.port}/${config.db.database}?authSource=admin`;
+let dbURI = `mongodb+srv://${config.db.user}:${config.db.password}@${config.db.host}/${config.db.database}?retryWrites=true&w=majority`;
 
 log.info(`Connecting to Mongodb via this URI: ${dbURI}`);
 
@@ -27,7 +27,7 @@ log.info(`Connecting to Mongodb via this URI: ${dbURI}`);
 mongoose
   .connect(dbURI, mongodbOptions)
   .then(async () => {
-    server.listen({ port: config.app.port }, () => {
+    httpServer.listen(config.app.port, () => {
       // tslint:disable-next-line: max-line-length
       log.info(`Server ready at http://${config.app.host}:${config.app.port}`);
     });

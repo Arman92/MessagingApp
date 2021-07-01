@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 
-// import { log } from '@messaging/common';
 import config from '@messaging/config';
 import { IUser, User } from '@messaging/model';
 
