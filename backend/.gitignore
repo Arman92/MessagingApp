@@ -72,6 +72,9 @@ typings/
 # next.js build output
 .next
 
+# vscode config folder
+.vscode 
+
 # nuxt.js build output
 .nuxt
 
