@@ -105,7 +105,7 @@ export class Modal extends PureComponent<Props> {
               style={positioning}
               role="dialog">
               {!hideCloseButton && (
-                <button className="modalCloseBtn" onClick={onClose}>
+                <button className="modalCloseBtn text-gray-800" onClick={onClose}>
                   close
                 </button>
               )}
