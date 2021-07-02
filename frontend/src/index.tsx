@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import logger, { LogLevelDesc } from 'loglevel';
 
-import './index.css';
+import configs from '@messaging/config';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import store from '@messaging/redux/store';
+
+logger.setLevel(configs.log.minLevel as LogLevelDesc);
 
 ReactDOM.render(
   <Provider store={store}>
