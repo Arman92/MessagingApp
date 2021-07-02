@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import logger, { LogLevelDesc } from 'loglevel';
 
+import store from '@messaging/redux/store';
 import configs from '@messaging/config';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import store from '@messaging/redux/store';
+import '@messaging/styles/main.scss';
 
 logger.setLevel(configs.log.minLevel as LogLevelDesc);
 
