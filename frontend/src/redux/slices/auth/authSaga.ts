@@ -1,15 +1,15 @@
 import { takeEvery } from 'redux-saga/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 
+import { IUser } from '@messaging/models';
 import { StorageKeys, LocalStorage } from '@messaging/utils';
 import { logOut, authSuccessful } from './authSlice';
-import { IUser } from '@messaging/models';
 
-function* handleAuthSuccessful(payload: PayloadAction<IUser>) {
+function handleAuthSuccessful(payload: PayloadAction<IUser>) {
   LocalStorage.setItem(StorageKeys.AuthUser, JSON.stringify(payload));
 }
 
-function* handleLogout() {
+function handleLogout() {
   LocalStorage.removeItem(StorageKeys.AuthUser);
 }
 
