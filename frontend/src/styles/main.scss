@@ -4,16 +4,13 @@
 /* stylelint-disable-next-line */
 @tailwind base;
 /* stylelint-disable-next-line */
+@tailwind components;
+/* stylelint-disable-next-line */
 @tailwind utilities;
-
-html {
-  font-size: 10px;
-}
 
 body {
   box-sizing: border-box;
   font-family: 'Work Sans', sans-serif;
-  font-size: 1.6rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
