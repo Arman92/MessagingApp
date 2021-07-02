@@ -38,8 +38,8 @@ export const SignupPage: FC = () => {
       <div className="signup-content">
         <div className="signup-card card bg-blue-400 shadow-lg">
           <figure className="signup-card-header text-purple-800">
-            <h2 className="mb-4 font-bold text-3xl">Welcome !</h2>
-            <h4 className="font-thin">Sign up to gain access.</h4>
+            <h2 className="mb-4 font-bold text-xl">Welcome !</h2>
+            <span>Sign up to gain access.</span>
           </figure>
           <div className="signup-form">
             <div className="w-full ">
@@ -93,7 +93,7 @@ export const SignupPage: FC = () => {
             </Link>
           </div>
           <a
-            className="mt-2 text-lg text-gray-500 hover:text-gray-700 hover:underline"
+            className="mt-2 text-sm text-gray-500 hover:text-gray-700 hover:underline"
             href="https://github.com/Arman92/MessagingApp">
             @2021 MERN stack messaging app
           </a>
