@@ -20,9 +20,9 @@ const authSlice = createSlice({
       state.authInProcess = false;
       state.user = action.payload;
     },
-    authFailed(state, action: PayloadAction<IUser>) {
+    authFailed(state) {
       state.authInProcess = false;
-      state.user = action.payload;
+      state.user = null;
     },
     logOut(state) {
       state.user = null;
