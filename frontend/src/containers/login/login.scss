@@ -1,0 +1,33 @@
+.login-page {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-width: 100vw;
+  min-height: 100vh;
+
+  .login-content {
+    min-width: 500px;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+
+    .login-card {
+      background: #fff;
+      box-shadow: 0 12px 24px rgba(18, 38, 63, 0.05);
+      border-radius: 4px;
+      margin: 36px 0;
+      flex: 1;
+
+      &-header {
+        background: var(--background-transparent);
+        border-radius: 4px 4px 0 0;
+        height: 112px;
+        background-image: url('./assets/image_container.png');
+        background-position: right;
+        background-repeat: no-repeat;
+        padding: 24px;
+      }
+    }
+  }
+}
