@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
@@ -16,6 +16,7 @@ export const LoginPage: FC = () => {
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onSubmit = async (values: { username: string; password: string }) => {
     setLoading(true);
@@ -27,6 +28,7 @@ export const LoginPage: FC = () => {
       });
 
       dispatch(authSuccessful({ ...loginResult.data }));
+      history.replace('/');
     } catch (err) {
       setError(getErrorMessage(err));
     } finally {

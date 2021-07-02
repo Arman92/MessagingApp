@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
@@ -16,6 +16,7 @@ export const SignupPage: FC = () => {
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onSubmit = async (values: { name: string; email: string; username: string; password: string }) => {
     setLoading(true);
@@ -24,6 +25,7 @@ export const SignupPage: FC = () => {
       const signupResult = await AuthService.signup(values);
 
       dispatch(authSuccessful({ ...signupResult.data }));
+      history.replace('/');
     } catch (err) {
       setError(getErrorMessage(err));
     } finally {

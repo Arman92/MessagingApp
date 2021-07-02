@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { LoginPage, SignupPage } from '@messaging/containers';
+import { LoginPage, SignupPage, MessengerPage } from '@messaging/containers';
 import { PrivateRoute } from '@messaging/components/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <PrivateRoute exact path="/" component={LoginPage} />
+        <PrivateRoute exact path="/" component={MessengerPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/signup" component={SignupPage} />
       </Switch>
