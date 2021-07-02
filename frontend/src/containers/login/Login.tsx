@@ -1,9 +1,16 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+
+import { Input } from '@messaging/molecules';
 
 import './login.scss';
 
 export const LoginPage: FC = () => {
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data: any) => alert(JSON.stringify(data));
+
   return (
     <div className="login-page">
       <div className="login-content">
@@ -14,34 +21,31 @@ export const LoginPage: FC = () => {
           </figure>
           <div className="login-form">
             <div className="w-full ">
-              <form className="bg-white  px-12 pt-10 pb-8 ">
+              <form className="bg-white  px-12 pt-10 pb-8" onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-6">
-                  <label className="block text-gray-600 text-md font-normal mb-1" htmlFor="username">
-                    Username
-                  </label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="username"
+                  <Input
+                    label="Username"
+                    id="text"
                     type="text"
                     placeholder="Enter your username or email"
+                    required
+                    {...register('username')}
                   />
                 </div>
 
                 <div className="mb-6">
-                  <label className="block text-gray-600 text-md font-normal mb-1" htmlFor="password">
-                    Password
-                  </label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="password"
-                    type="text"
+                  <Input
+                    label="Password"
+                    type="password"
                     placeholder="Enter your password"
+                    {...register('password')}
+                    required
                   />
                 </div>
 
                 <button
                   className="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 mt-10 rounded focus:outline-none focus:shadow-outline"
-                  type="button">
+                  type="submit">
                   Log In
                 </button>
               </form>
