@@ -46,6 +46,7 @@ module.exports = {
     'react/button-has-type': 'off',
     'react/react-in-jsx-scope': 'off',
     'no-restricted-syntax': ['off', 'FunctionExpression', 'WithStatement', "BinaryExpression[operator='in, of']"],
+    'jsx-a11y/label-has-associated-control': 'off',
     'import/no-extraneous-dependencies': [
       'error',
       { devDependencies: false, optionalDependencies: false, peerDependencies: false },

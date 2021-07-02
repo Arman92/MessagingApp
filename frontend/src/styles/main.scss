@@ -1,3 +1,6 @@
+@import './variables';
+@import './colors';
+
 /* stylelint-disable-next-line */
 @tailwind base;
 /* stylelint-disable-next-line */
@@ -9,7 +12,6 @@ html {
 
 body {
   box-sizing: border-box;
-  color: var(--text-color-primary);
   font-family: 'Work Sans', sans-serif;
   font-size: 1.6rem;
   -webkit-font-smoothing: antialiased;
