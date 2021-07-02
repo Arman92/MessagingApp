@@ -8,6 +8,8 @@ import { selectUser } from '@messaging/redux/slices';
 type Props = {
   active: boolean;
   participants: IUser[];
+  conversationId: string;
+  onClick: (conversationId: string) => void;
 };
 
 const getConversationTitle = (participants: IUser[], self: IUser) => {
@@ -15,18 +17,27 @@ const getConversationTitle = (participants: IUser[], self: IUser) => {
 };
 
 export const ConversationListItem: FC<Props> = props => {
-  const { active, participants } = props;
+  const { active, participants, conversationId, onClick } = props;
   const user = useSelector(selectUser);
 
   const otherParticipant = useMemo(() => getConversationTitle(participants, user), [participants, user]);
 
-  return (
-    <div>
-      <div className={cl('flex flex-row items-center p-5 rounded-sm', active && 'bg-purple-300')}>
-        <div className="w-32 h-32 rounded-full bg-purple-400 text-9xl">{otherParticipant.name.charAt(0)}</div>
+  const handleOnClick = () => {
+    onClick(conversationId);
+  };
 
-        <span className="ml-3">{otherParticipant.name}</span>
+  return (
+    <div
+      className={cl(
+        'flex w-full flex-row items-center p-5 rounded-sm hover:bg-green-200 cursor-pointer transition-colors',
+        active && 'bg-purple-300'
+      )}
+      onClick={handleOnClick}>
+      <div className="w-10 h-10 rounded-full bg-purple-400 text-md flex items-center justify-center">
+        {otherParticipant.name.charAt(0)}
       </div>
+
+      <span className="ml-3">{otherParticipant.name}</span>
     </div>
   );
 };
