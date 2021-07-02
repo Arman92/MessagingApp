@@ -37,6 +37,15 @@ ConversationSchema.pre('findOneAndUpdate', function () {
 // TODO: put any cascading delete or relevant logic here, if needed
 // ConversationSchema.pre('remove', function (next) {});
 
+ConversationSchema.methods.toJSON = function () {
+  const obj = this.toObject();
+
+  obj.id = obj._id;
+  delete obj._id;
+
+  return obj;
+};
+
 ConversationSchema.plugin(autoPopulate);
 
 export const ConversationModel = mongoose.model<IConversationModel>(
