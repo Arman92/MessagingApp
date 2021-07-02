@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { FC, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import cl from 'clsx';
@@ -13,7 +14,7 @@ type Props = {
 };
 
 const getConversationTitle = (participants: IUser[], self: IUser) => {
-  return participants.find(p => p.id !== self.id);
+  return participants.find(p => p._id !== self.id);
 };
 
 export const ConversationListItem: FC<Props> = props => {

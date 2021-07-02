@@ -1,15 +1,21 @@
 import { FC, useState } from 'react';
 import { useQuery } from 'react-query';
+import { useSelector } from 'react-redux';
 
 import { ConversationService } from '@messaging/services/api/conversation';
 import { ConversationList } from '@messaging/components/ConversationList';
+import { ConversationDetails } from '@messaging/components/ConversationDetails';
+import { selectActiveConversation } from '@messaging/redux/slices';
 import { NewConversationModal } from './components/NewConversationModal';
 
 import './messenger.scss';
 
 export const MessengerPage: FC = () => {
-  const conversations = useQuery('conversations', ConversationService.getConversationList);
   const [newConversationModalOpen, setNewConversationModalOpen] = useState(false);
+
+  const activeConversation = useSelector(selectActiveConversation);
+
+  const conversations = useQuery('conversations', ConversationService.getConversationList);
 
   const toggleNewConversationModal = () => {
     setNewConversationModalOpen(!newConversationModalOpen);
@@ -36,7 +42,9 @@ export const MessengerPage: FC = () => {
         </button>
         <ConversationList conversations={conversations.data} />
       </div>
-      <div className="chat-container">sadfas</div>
+      <div className="chat-container">
+        {activeConversation && <ConversationDetails conversation={activeConversation} />}
+      </div>
     </div>
   );
 };
