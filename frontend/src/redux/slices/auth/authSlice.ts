@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { StorageKeys, LocalStorage } from '@messaging/utils';
 import { IAuthState } from '@messaging/models';
-import { LoginReqResponse } from 'services/api/types';
+import { LoginReqResponse } from '@messaging/services/api/types';
 
 const initialState: IAuthState = {
   authInProcess: false,
