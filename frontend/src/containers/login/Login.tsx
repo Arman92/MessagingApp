@@ -1,15 +1,38 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
 import { Input } from '@messaging/molecules';
+import { AuthService } from '@messaging/services/api';
+import { authSuccessful } from '@messaging/redux/slices';
+import { getErrorMessage } from '@messaging/utils/error-helper';
 
 import './login.scss';
 
 export const LoginPage: FC = () => {
   const { register, handleSubmit } = useForm();
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data: any) => alert(JSON.stringify(data));
+  const dispatch = useDispatch();
+
+  const onSubmit = async (values: { username: string; password: string }) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const loginResult = await AuthService.login({
+        emailOrUsername: values.username,
+        password: values.password,
+      });
+
+      dispatch(authSuccessful({ ...loginResult.data }));
+    } catch (err) {
+      setError(getErrorMessage(err));
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="login-page">
@@ -43,10 +66,13 @@ export const LoginPage: FC = () => {
                   />
                 </div>
 
+                {error && <div className="text-red-600">{error}</div>}
+
                 <button
                   className="w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 mt-10 rounded focus:outline-none focus:shadow-outline"
-                  type="submit">
-                  Log In
+                  type="submit"
+                  disabled={loading}>
+                  {loading ? 'Loading...' : 'Log In'}
                 </button>
               </form>
             </div>
