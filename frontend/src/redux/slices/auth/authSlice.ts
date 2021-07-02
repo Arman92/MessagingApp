@@ -2,11 +2,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { StorageKeys, LocalStorage } from '@messaging/utils';
-import { IAuthState, IUser } from '@messaging/models';
+import { IAuthState } from '@messaging/models';
+import { LoginReqResponse } from 'services/api/types';
 
 const initialState: IAuthState = {
-  user: JSON.parse(LocalStorage.getItem(StorageKeys.AuthUser)),
   authInProcess: false,
+  user: JSON.parse(LocalStorage.getItem(StorageKeys.AuthUser)),
+  accessToken: LocalStorage.getItem(StorageKeys.AccessToken),
+  refreshToken: LocalStorage.getItem(StorageKeys.RefreshToken),
 };
 
 const authSlice = createSlice({
@@ -16,9 +19,11 @@ const authSlice = createSlice({
     authInitiated(state) {
       state.authInProcess = true;
     },
-    authSuccessful(state, action: PayloadAction<IUser>) {
+    authSuccessful(state, action: PayloadAction<LoginReqResponse>) {
       state.authInProcess = false;
-      state.user = action.payload;
+      state.user = action.payload.user;
+      state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
     },
     authFailed(state) {
       state.authInProcess = false;

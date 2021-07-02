@@ -1,6 +1,8 @@
 import { IUser } from '@messaging/models';
 
 export interface IAuthState {
-  user: IUser | null;
   authInProcess: boolean;
+  user: IUser | null;
+  accessToken: string;
+  refreshToken: string;
 }
