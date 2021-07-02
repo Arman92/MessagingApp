@@ -2,7 +2,7 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 
 import { rootSaga } from './sagas';
-import { authReducer } from './slices';
+import { authReducer, conversationReducer } from './slices';
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -13,6 +13,7 @@ const middlewares = [sagaMiddleware];
 const store = configureStore({
   reducer: {
     auth: authReducer,
+    conversation: conversationReducer,
   },
   middleware: [
     ...middlewares,
