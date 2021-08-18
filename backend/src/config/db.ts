@@ -4,4 +4,5 @@ export default {
   password: process.env.MONGO_PASSWORD,
   host: process.env.MONGO_HOST,
   port: process.env.MONGO_PORT,
+  atlasURI: process.env.MONGO_ATLAS_URI,
 };

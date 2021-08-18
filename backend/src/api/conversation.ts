@@ -1,7 +1,7 @@
 import { Router, Request, Response, NextFunction } from 'express';
 
 import { authGuard } from '@messaging/middleware/auth-guard';
-import { Conversation, Message } from '@messaging/model';
+import { Conversation, Message, User } from '@messaging/model';
 import { NotFoundError } from './api-errors';
 
 const conversationRouter = Router();
@@ -19,26 +19,34 @@ conversationRouter.get(
 );
 
 // Create a new conversation
-conversationRouter.post('/', authGuard, async (req: Request, res: Response) => {
-  const userId = req.context.userId;
+conversationRouter.post(
+  '/',
+  authGuard,
+  async (req: Request, res: Response, next: NextFunction) => {
+    const userId = req.context.userId;
 
-  const { title, participantIds } = req.body as {
-    title: string;
-    participantIds: string[];
-  };
+    const { title, usernameOrEmail } = req.body as {
+      title: string;
+      usernameOrEmail: string;
+    };
 
-  // Include self userId if not already present
-  if (!participantIds.includes(userId.toString())) {
-    participantIds.push(userId);
+    const participantUser =
+      (await User.getUserByEmail(usernameOrEmail.toLowerCase())) ||
+      (await User.getUserByUsername(usernameOrEmail.toLowerCase()));
+    if (!participantUser) {
+      return next(new NotFoundError('Participant user not found!'));
+    }
+
+    const participantIds = [userId, participantUser.id];
+
+    const conversation = await Conversation.createConversation({
+      title,
+      participantIds,
+    });
+
+    res.status(200).send(conversation);
   }
-
-  const conversation = await Conversation.createConversation({
-    title,
-    participantIds,
-  });
-
-  res.status(200).send(conversation);
-});
+);
 
 // Get messages in a conversation
 conversationRouter.get(

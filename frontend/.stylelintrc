@@ -1,0 +1,17 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-sass-guidelines"
+  ],
+  "rules": {
+    "indentation": 2,
+    "selector-class-pattern": null,
+    "max-nesting-depth": null,
+    "selector-max-compound-selectors": null,
+    "selector-no-qualifying-type": null,
+    "order/properties-alphabetical-order": null,
+    "property-no-vendor-prefix": null,
+    "value-no-vendor-prefix": null,
+    "no-descending-specificity": null,
+  }
+}

@@ -19,7 +19,12 @@ const mongodbOptions = {
   bufferMaxEntries: 0,
 };
 
-const dbURI = `mongodb://${config.db.user}:${config.db.password}@${config.db.host}/${config.db.database}?authSource=admin`;
+let dbURI = `mongodb://${config.db.user}:${config.db.password}@${config.db.host}/${config.db.database}?authSource=admin`;
+
+// If there is atlasURI present, use that instead
+if (config.db.atlasURI) {
+  dbURI = config.db.atlasURI;
+}
 
 log.info(`Connecting to Mongodb via this URI: ${dbURI}`);
 

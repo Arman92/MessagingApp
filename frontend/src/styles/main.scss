@@ -1,0 +1,43 @@
+@import './variables';
+@import './colors';
+
+/* stylelint-disable-next-line */
+@tailwind base;
+/* stylelint-disable-next-line */
+@tailwind components;
+/* stylelint-disable-next-line */
+@tailwind utilities;
+
+body {
+  box-sizing: border-box;
+  font-family: 'Work Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.4rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 0.25rem;
+  box-shadow: 0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 0.6rem;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-color-secondary);
+}

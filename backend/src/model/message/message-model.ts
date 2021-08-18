@@ -51,6 +51,15 @@ MessageSchema.pre('findOneAndUpdate', function () {
 // TODO: put any cascading delete or relevant logic here, if needed
 // MessageSchema.pre('remove', function (next) {});
 
+MessageSchema.methods.toJSON = function () {
+  const obj = this.toObject();
+
+  obj.id = obj._id;
+  delete obj._id;
+
+  return obj;
+};
+
 MessageSchema.plugin(autoPopulate);
 
 export const MessageModel = mongoose.model<IMessageModel>(
