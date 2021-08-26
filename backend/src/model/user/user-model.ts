@@ -33,7 +33,7 @@ const UserSchema = new Schema<IUserModel>(
 );
 
 UserSchema.pre('findOneAndUpdate', function () {
-  this.setUpdate({ ...this.getUpdate, updatedAt: new Date() });
+  this.setUpdate({ ...this.getUpdate(), updatedAt: new Date() });
 });
 
 UserSchema.pre('save', function (next) {

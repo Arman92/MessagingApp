@@ -31,7 +31,7 @@ const ConversationSchema = new Schema<IConversationModel>(
 );
 
 ConversationSchema.pre('findOneAndUpdate', function () {
-  this.setUpdate({ ...this.getUpdate, updatedAt: new Date() });
+  this.setUpdate({ ...this.getUpdate(), updatedAt: new Date() });
 });
 
 // TODO: put any cascading delete or relevant logic here, if needed
