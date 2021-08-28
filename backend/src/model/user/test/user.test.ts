@@ -56,7 +56,7 @@ describe('User Mongodb service', async () => {
 
     assert(updatedUser);
     expect(updatedUser.id).to.equal(user.id);
-    expect(updatedUser.name).to.equal(user.name);
+    expect(updatedUser.name).to.equal('New Name');
     expect(updatedUser.username).to.equal(user.username);
     expect(updatedUser.email).to.equal(user.email);
     expect(updatedUser.password).to.equal(user.password);
